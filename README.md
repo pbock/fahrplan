@@ -231,4 +231,4 @@ The API currently only returns trains that run in/through Germany, but that's en
 
 One *could* guess the timezone by abusing the `latitude`/`longitude` information, but that seems overkill for something that *should* be fixed by sending all the necessary data.
 
-Timezones really aren't a problem that hasn't been fixed yet, and as soon as Deutsche Bahn includes timezones in its API results, this client will support them too.
+Timezones really aren't a problem that hasn't been solved yet, and as soon as Deutsche Bahn includes timezones in its API results, this client will support them too.
