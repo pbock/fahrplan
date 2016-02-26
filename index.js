@@ -2,20 +2,24 @@
 
 var qs = require('querystring');
 
-var request = require('lib/request');
-var parsers = require('lib/parsers');
-var dateUtil = require('lib/date-util');
+var request = require('./lib/request');
+var parsers = require('./lib/parsers');
+var dateUtil = require('./lib/date-util');
 
 var BASE = 'http://open-api.bahn.de/bin/rest.exe';
 
 module.exports = function fahrplan(key) {
+  if (!key) throw new Error('No API key provided');
+
   function findStation(query) {
     return request(
       BASE + '/location.name?' + qs.stringify({
         authKey: key,
         input: query,
         format: 'json',
-      })).then(parsers.station);
+      }))
+      .then(function (res) { res.api = api; return res; })
+      .then(parsers.station);
   }
   function getStationBoard(type, stationId, date) {
     var endpoint;
@@ -32,18 +36,21 @@ module.exports = function fahrplan(key) {
         date: dateUtil.formatDate(date),
         time: dateUtil.formatTime(date),
         format: 'json',
-      })).then(parsers.stationBoard);
+      }))
+      .then(function (res) { res.api = api; return res; })
+      .then(parsers.stationBoard);
   }
 
-  return {
+  var api = {
     station: {
       find: findStation,
     },
-    departuresBoard: {
+    departures: {
       get: function(stationId) { return getStationBoard('departures', stationId) },
     },
-    arrivalsBoard: {
+    arrivals: {
       get: function(stationId) { return getStationBoard('arrivals', stationId) },
     },
   };
+  return api;
 }

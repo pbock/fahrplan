@@ -37,6 +37,13 @@ describe('parsers', function () {
         },
       }),
     };
+    var testDataWithAPI = {
+      data: testData.data,
+      api: {
+        departures: { get: function (id, date) { return 'getDepartures' + id + date } },
+        arrivals: { get: function (id, date) { return 'getArrivals' + id + date } },
+      },
+    };
 
     it('returns an object with "stops" and "places" arrays', function () {
       var parsed = p(berlinData);
@@ -81,6 +88,14 @@ describe('parsers', function () {
       expect(parsed.stops).to.deep.equal([]);
       expect(parsed.places).to.deep.equal([]);
     });
+
+    it('adds "departures.get" and "arrivals.get" methods if an API reference was provided', function () {
+      var parsed = p(testDataWithAPI);
+      expect(parsed.stops[0].departures.get).to.be.a('function');
+      expect(parsed.stops[0].arrivals.get).to.be.a('function');
+      expect(parsed.stops[0].departures.get('foo')).to.equal('getDepartures01234567foo');
+      expect(parsed.stops[0].arrivals.get('bar')).to.equal('getArrivals01234567bar');
+    });
   });
 
   describe('#stationBoard()', function () {
@@ -89,6 +104,10 @@ describe('parsers', function () {
 
     var berlinArrivals = {
       data: fs.readFileSync(pr(__dirname, '../data/arrivals-berlin.json')),
+    };
+    var berlinArrivalsWithAPI = {
+      data: fs.readFileSync(pr(__dirname, '../data/arrivals-berlin.json')),
+      api: { itinerary: { get: function (url) { return 'getItinerary' + url } } },
     };
     var berlinDepartures = {
       data: fs.readFileSync(pr(__dirname, '../data/departures-berlin.json')),
@@ -165,6 +184,14 @@ describe('parsers', function () {
       expect(output.platform).to.equal(input.track);
       expect(output.departure).to.deep.equal(dateUtil.parse(input.date, input.time));
     });
+
+    it('adds an "itinerary.get" method if request reference was provided', function () {
+      var arrivals = p(berlinArrivalsWithAPI);
+      arrivals.forEach(function (arrival) {
+        expect(arrival.itinerary.get).to.be.a('function');
+        expect(arrival.itinerary.get()).to.match(/^getItineraryhttp/);
+      });
+    });
   });
 
   describe('#itinerary()', function () {
@@ -225,6 +252,13 @@ describe('parsers', function () {
       },
     };
     var simple = { data: JSON.stringify({ JourneyDetail: simpleItinerary }) };
+    var simpleWithApi = {
+      data: JSON.stringify({ JourneyDetail: simpleItinerary }),
+      api: {
+        departures: { get: function (id, date) { return 'getDepartures' + id + date } },
+        arrivals: { get: function (id, date) { return 'getArrivals' + id + date } },
+      },
+    };
 
     it('returns an object with "stops", "names", "types", "operators" and "notes" arrays', function () {
       var itinerary = p(ic142);
@@ -270,5 +304,15 @@ describe('parsers', function () {
         description: 'description',
       });
     });
+
+
+    it('adds "departures.get" and "arrivals.get" methods if an API reference was provided', function () {
+      var parsed = p(simpleWithApi);
+      expect(parsed.stops[0].station.departures.get('foo')).to.equal('getDepartures08foo');
+      expect(parsed.stops[0].station.arrivals.get('bar')).to.equal('getArrivals08bar');
+      expect(parsed.stops[1].station.departures.get('foo')).to.equal('getDepartures09foo');
+      expect(parsed.stops[1].station.arrivals.get('bar')).to.equal('getArrivals09bar');
+    });
+
   });
 });
