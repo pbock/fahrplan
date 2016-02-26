@@ -138,7 +138,7 @@ fahrplan.departuresBoard.get('008011160', new Date(2016, 0, 1)).then(departures 
 ]
 ```
 
-Because you'll often need to look up a station ID before you can fetch the departures board, you can also look it up right from the result of `fahrplan.station.find()`. Each of the `stations` has a `departuresBoard.get([ date ])` method that works just the same.
+Because you'll often need to look up a station ID before you can fetch the departures board, you can also look it up right from the result of `station.find()` or `station.get()`. Station objects come with a `departuresBoard.get([ date ])` method that works just the same.
 
 Example:
 
@@ -163,7 +163,7 @@ fahrplan.arrivalsBoard.get('008011160', new Date(2016, 0, 1)).then(arrivals => a
 
 **Returns** a Promise that resolves with an array just like the one in `departuresBoard.get()`, except that `destination` and `departure` are replaced with `origin` and `arrival`, respectively.
 
-Because you'll often need to look up a station ID before you can fetch the arrivals board, you can also look it up right from the result of `fahrplan.station.find()`. Each of the `stations` has an `arrivalsBoard.get([ date ])` method that works just the same.
+Because you'll often need to look up a station ID before you can fetch the arrivals board, you can also look it up right from the result of `station.find()` or `station.get()`. Station objects come with a `arrivalsBoard.get([ date ])` method that works just the same.
 
 ### `itinerary.get(url)`
 
