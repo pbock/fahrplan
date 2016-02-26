@@ -1,0 +1,35 @@
+{
+  "name": "fahrplan",
+  "version": "0.1.0",
+  "description": "A client for Deutsche Bahn's open timetable API",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pbock/fahrplan.git"
+  },
+  "keywords": [
+    "train",
+    "bahn",
+    "station",
+    "db",
+    "schedule",
+    "timetable",
+    "api"
+  ],
+  "author": "Philipp Bock <p@philippbock.de> (http://philippbock.de/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pbock/fahrplan/issues"
+  },
+  "homepage": "https://github.com/pbock/fahrplan#readme",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^2.4.5"
+  },
+  "dependencies": {
+    "es6-promise": "^3.1.2"
+  }
+}
