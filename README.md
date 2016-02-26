@@ -183,3 +183,7 @@ fahrplan.arrivalsBoard.get('008010255')
   ]
 }
 ```
+
+### To Do
+
+* Improve error handling (the client doesn't throw on all API errors yet, you may sometimes get an empty result when you should get an error)
