@@ -193,3 +193,15 @@ fahrplan.arrivalsBoard.get('008010255')
 ### To Do
 
 * Improve error handling (the client doesn't throw on all API errors yet, you may sometimes get an empty result when you should get an error)
+
+### Known issues
+
+All dates and times are assumed to be in the timezone of your machine. This is fine for most of the queries you will want to do, but it means that you can run into trouble if your computer is not in Central European Time.
+
+There's no easy fix for this, partly because JavaScript's timezone handling is atrocious, but mainly because the API doesn't return unambiguous times anyway – **all API results are in local time** which needn't always be CET/CEST.
+
+The API currently only returns trains that run in/through Germany, but that's enough to cause issues: The EN 23 Москва́-Белору́сская—Strasbourg runs through Germany and is therefore included in the results. It leaves Moscow at 19:15 UTC – but the API doesn't tell you that, it tells you that it leaves at 22:15 and lets you guess the timezone.
+
+One *could* guess the timezone by abusing the `latitude`/`longitude` information, but that seems overkill for something that *should* be fixed by sending all the necessary data.
+
+Timezones really aren't a problem that hasn't been fixed yet, and as soon as Deutsche Bahn includes timezones in its API results, this client will support them too.
