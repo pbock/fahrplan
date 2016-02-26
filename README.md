@@ -3,7 +3,7 @@
 A JavaScript client for Deutsche Bahn's [timetable API](http://data.deutschebahn.com/apis/fahrplan/).
 
 ```js
-const fahrplan = require('.')('TopSecretAPIKey');
+const fahrplan = require('fahrplan')('TopSecretAPIKey');
 
 fahrplan.station.find('Berlin')
   .then(result => {
@@ -24,6 +24,12 @@ fahrplan.arrivalsBoard.get('8098160', new Date(2016, 0, 1))
 ```
 
 It currently only works in node.js but will be coming to a browser near you as soon as Deutsche Bahn adds a `Access-Control-Allow-Origin` header.
+
+## Installing
+
+```sh
+npm install fahrplan
+```
 
 ## Usage
 
