@@ -24,7 +24,7 @@ module.exports = function fahrplan(key) {
   function getStationBoard(type, stationId, date) {
     var endpoint;
     if (type === 'departures') endpoint = '/departureBoard';
-    else if (type === 'arrivals') endpoint = '/arrivalsBoard';
+    else if (type === 'arrivals') endpoint = '/arrivalBoard';
     else throw new Error('Type must be either "departures" or "arrivals"');
 
     if (!date) date = Date.now();

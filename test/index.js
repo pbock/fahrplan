@@ -50,6 +50,7 @@ describe('fahrplan', function () {
     it('resolves with an array of "departures"', function (done) {
       fahrplan.departuresBoard.get(berlinId)
         .then(function (departures) {
+          expect(departures).to.have.length.above(0);
           departures.forEach(function (departure) {
             expect(departure).to.contain.keys('name', 'type', 'station', 'departure', 'destination');
             expect(departure.departure).to.be.an.instanceOf(Date);
@@ -64,6 +65,7 @@ describe('fahrplan', function () {
     it('resolves with an array of "arrivals"', function (done) {
       fahrplan.arrivalsBoard.get(berlinId)
         .then(function (arrivals) {
+          expect(arrivals).to.have.length.above(0);
           arrivals.forEach(function (arrival) {
             expect(arrival).to.contain.keys('name', 'type', 'station', 'arrival', 'origin');
             expect(arrival.arrival).to.be.an.instanceOf(Date);
