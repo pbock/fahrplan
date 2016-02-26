@@ -21,6 +21,13 @@ module.exports = function fahrplan(key) {
       .then(function (res) { res.api = api; return res; })
       .then(parsers.station);
   }
+  function getStation(query) {
+    return findStation(query)
+      .then(function (result) {
+        if (result.stations.length) return result.stations[0];
+        return null;
+      });
+  }
   function getStationBoard(type, stationId, date) {
     var endpoint;
     if (type === 'departures') endpoint = '/departureBoard';
@@ -49,6 +56,7 @@ module.exports = function fahrplan(key) {
   var api = {
     station: {
       find: findStation,
+      get: getStation,
     },
     departuresBoard: {
       get: function(stationId, date) { return getStationBoard('departures', stationId, date) },

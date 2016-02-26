@@ -1,7 +1,7 @@
 'use strict';
 
 var expect = require('chai').expect;
-var Promise = require('es6-promise');
+var Promise = require('es6-promise').Promise;
 
 var Fahrplan = require('..');
 var config = require('./config');
@@ -41,6 +41,35 @@ describe('fahrplan', function () {
           done();
 
           berlinId = result.stations[0].id;
+        })
+        .catch(done);
+    });
+  });
+
+  describe('#station.get()', function () {
+    it('resolves with the first result of the equivalent `station.find()` query', function (done) {
+      Promise.all([
+        fahrplan.station.find('Berlin Hbf'),
+        fahrplan.station.get('Berlin Hbf'),
+      ])
+      .then(function (results) {
+        var find = results[0], get = results[1];
+        // Can't use deep.equal because departuresBoard.get/arrivalsBoard.get
+        // aren't equal
+        expect(find.stations[0].id).to.equal(get.id);
+        expect(find.stations[0].name).to.equal(get.name);
+        expect(find.stations[0].latitude).to.equal(get.latitude);
+        expect(find.stations[0].longitude).to.equal(get.longitude);
+        done();
+      })
+      .catch(done);
+    });
+
+    it('resolves with null if no station was found', function (done) {
+      fahrplan.station.get('TESTINGWHATHAPPENSIFQUERYISSTUPID')
+        .then(function (result) {
+          expect(result).to.be.null;
+          done();
         })
         .catch(done);
     });

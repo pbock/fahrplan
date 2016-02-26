@@ -5,11 +5,8 @@ A JavaScript client for Deutsche Bahn's [timetable API](http://data.deutschebahn
 ```js
 const fahrplan = require('fahrplan')('TopSecretAPIKey');
 
-fahrplan.station.find('Berlin')
-  .then(result => {
-    console.log('Found %d stations, looking up departures for %s', result.stations.length, result.stations[0].name);
-    return result.stations[0].departuresBoard.get();
-  })
+fahrplan.station.get('Berlin')
+  .then(berlin => berlin.departuresBoard.get())
   .then(departures => {
     console.log('The next train is %s to %s', departures[0].name, departures[0].destination);
     return departures[0].itinerary.get();
@@ -43,7 +40,7 @@ Just [send an email to dbopendata@deutschebahn.com](mailto:dbopendata@deutscheba
 
 There are currently only three things the API lets you do:
 
-* `station.find()`:
+* `station.find()`/`station.get()`:
   Search for a station by name (similar to the booking form on [bahn.de](http://www.bahn.de/p/view/index.shtml))
 * `departuresBoard.get()`/`arrivalsBoard.get()`:
   Find all trains leaving from/arriving at a station at a given time
@@ -52,7 +49,7 @@ There are currently only three things the API lets you do:
 
 ### `station.find(name)`
 
-Starts a full-text search for the given `name`.
+Starts a full-text search for the given `name` and resolves with a list of matching stations and places.
 
 Example:
 ```js
@@ -85,6 +82,30 @@ fahrplan.station.find('008010255').then(doSomethingWithTheResult);
     },
     // …
   ]
+}
+```
+
+### `station.get(name)`
+
+Starts a full-text search for the given name and resolves with only the first matched station, or `null` if no station was found.
+
+Behaves like `station.find()`, but only resolves with the first match or `null`.
+
+Example:
+```js
+fahrplan.station.get('München Hbf').then(doSomethingWithMunich);
+```
+
+**Returns** a Promise that resolves with a `station` object like this:
+
+```js
+{
+  name: 'München Hbf',
+  latitude: 48.140228,
+  longitude: 11.558338,
+  id: '008000261',
+  departuresBoard: { get: function () { /* … */ } },
+  arrivalsBoard: { get: function () { /* … */ } }
 }
 ```
 
@@ -122,8 +143,8 @@ Because you'll often need to look up a station ID before you can fetch the depar
 Example:
 
 ```js
-fahrplan.station.find('Köln')
-  .then(result => result.stations[0].departuresBoard.get())
+fahrplan.station.get('Köln')
+  .then(cologne => cologne.departuresBoard.get())
   .then(doSomethingWithTheDeparturesBoard);
 ```
 
