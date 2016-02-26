@@ -19,8 +19,8 @@ describe('Fahrplan', function () {
   it('returns an object with "station.find", "departures.get" and "arrivals.get" methods', function () {
     var fahrplan = new Fahrplan('topsecret');
     expect(fahrplan.station.find).to.be.a('function');
-    expect(fahrplan.departuresBoard.get).to.be.a('function');
-    expect(fahrplan.arrivalsBoard.get).to.be.a('function');
+    expect(fahrplan.departure.find).to.be.a('function');
+    expect(fahrplan.arrival.find).to.be.a('function');
   });
 });
 
@@ -36,8 +36,8 @@ describe('fahrplan', function () {
           expect(result.places).to.be.an('array');
 
           expect(result.stations[0].name).to.equal('Berlin Hbf');
-          expect(result.stations[0].departuresBoard.get).to.be.a('function');
-          expect(result.stations[0].arrivalsBoard.get).to.be.a('function');
+          expect(result.stations[0].departure.find).to.be.a('function');
+          expect(result.stations[0].arrival.find).to.be.a('function');
           done();
 
           berlinId = result.stations[0].id;
@@ -54,7 +54,7 @@ describe('fahrplan', function () {
       ])
       .then(function (results) {
         var find = results[0], get = results[1];
-        // Can't use deep.equal because departuresBoard.get/arrivalsBoard.get
+        // Can't use deep.equal because departure.find/arrival.find
         // aren't equal
         expect(find.stations[0].id).to.equal(get.id);
         expect(find.stations[0].name).to.equal(get.name);
@@ -75,9 +75,9 @@ describe('fahrplan', function () {
     });
   });
 
-  describe('#departuresBoard.get()', function () {
+  describe('#departure.find()', function () {
     it('resolves with an array of "departures"', function (done) {
-      fahrplan.departuresBoard.get(berlinId)
+      fahrplan.departure.find(berlinId)
         .then(function (departures) {
           expect(departures).to.have.length.above(0);
           departures.forEach(function (departure) {
@@ -91,7 +91,7 @@ describe('fahrplan', function () {
 
     it('accepts a date as a second argument', function (done) {
       var date = new Date(Date.now() + 24 * 60 * 60 * 1000);
-      fahrplan.departuresBoard.get(berlinId, date)
+      fahrplan.departure.find(berlinId, date)
         .then(function (departures) {
           expect(departures).to.have.length.above(0);
           departures.forEach(function (departure) {
@@ -103,9 +103,9 @@ describe('fahrplan', function () {
     });
   });
 
-  describe('#arrivalsBoard.get()', function () {
+  describe('#arrival.find()', function () {
     it('resolves with an array of "arrivals"', function (done) {
-      fahrplan.arrivalsBoard.get(berlinId)
+      fahrplan.arrival.find(berlinId)
         .then(function (arrivals) {
           expect(arrivals).to.have.length.above(0);
           arrivals.forEach(function (arrival) {
@@ -119,7 +119,7 @@ describe('fahrplan', function () {
 
     it('accepts a date as a second argument', function (done) {
       var date = new Date(Date.now() + 24 * 60 * 60 * 1000);
-      fahrplan.arrivalsBoard.get(berlinId, date)
+      fahrplan.arrival.find(berlinId, date)
         .then(function (arrivals) {
           expect(arrivals).to.have.length.above(0);
           arrivals.forEach(function (arrival) {
@@ -133,7 +133,7 @@ describe('fahrplan', function () {
 
   it('returns chainable promises', function (done) {
     fahrplan.station.find('Berlin')
-      .then(function (stations) { return stations.stations[0].departuresBoard.get() })
+      .then(function (stations) { return stations.stations[0].departure.find() })
       .then(function (departures) { return departures[0].itinerary.get() })
       .then(function (itinerary) {
         expect(itinerary.stops).to.have.length.above(0);

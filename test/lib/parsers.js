@@ -40,8 +40,8 @@ describe('parsers', function () {
     var testDataWithAPI = {
       data: testData.data,
       api: {
-        departuresBoard: { get: function (id, date) { return 'getDepartures' + id + date } },
-        arrivalsBoard: { get: function (id, date) { return 'getArrivals' + id + date } },
+        departure: { find: function (id, date) { return 'findDeparture' + id + date } },
+        arrival: { find: function (id, date) { return 'findArrival' + id + date } },
       },
     };
 
@@ -89,12 +89,12 @@ describe('parsers', function () {
       expect(parsed.places).to.deep.equal([]);
     });
 
-    it('adds "departuresBoard.get" and "arrivalsBoard.get" methods if an API reference was provided', function () {
+    it('adds "departure.find" and "arrival.find" methods if an API reference was provided', function () {
       var parsed = p(testDataWithAPI);
-      expect(parsed.stations[0].departuresBoard.get).to.be.a('function');
-      expect(parsed.stations[0].arrivalsBoard.get).to.be.a('function');
-      expect(parsed.stations[0].departuresBoard.get('foo')).to.equal('getDepartures01234567foo');
-      expect(parsed.stations[0].arrivalsBoard.get('bar')).to.equal('getArrivals01234567bar');
+      expect(parsed.stations[0].departure.find).to.be.a('function');
+      expect(parsed.stations[0].arrival.find).to.be.a('function');
+      expect(parsed.stations[0].departure.find('foo')).to.equal('findDeparture01234567foo');
+      expect(parsed.stations[0].arrival.find('bar')).to.equal('findArrival01234567bar');
     });
   });
 
@@ -255,8 +255,8 @@ describe('parsers', function () {
     var simpleWithApi = {
       data: JSON.stringify({ JourneyDetail: simpleItinerary }),
       api: {
-        departuresBoard: { get: function (id, date) { return 'getDepartures' + id + date } },
-        arrivalsBoard: { get: function (id, date) { return 'getArrivals' + id + date } },
+        departure: { find: function (id, date) { return 'findDeparture' + id + date } },
+        arrival: { find: function (id, date) { return 'findArrival' + id + date } },
       },
     };
 
@@ -308,10 +308,10 @@ describe('parsers', function () {
 
     it('adds "departures.get" and "arrivals.get" methods if an API reference was provided', function () {
       var parsed = p(simpleWithApi);
-      expect(parsed.stops[0].station.departuresBoard.get('foo')).to.equal('getDepartures08foo');
-      expect(parsed.stops[0].station.arrivalsBoard.get('bar')).to.equal('getArrivals08bar');
-      expect(parsed.stops[1].station.departuresBoard.get('foo')).to.equal('getDepartures09foo');
-      expect(parsed.stops[1].station.arrivalsBoard.get('bar')).to.equal('getArrivals09bar');
+      expect(parsed.stops[0].station.departure.find('foo')).to.equal('findDeparture08foo');
+      expect(parsed.stops[0].station.arrival.find('bar')).to.equal('findArrival08bar');
+      expect(parsed.stops[1].station.departure.find('foo')).to.equal('findDeparture09foo');
+      expect(parsed.stops[1].station.arrival.find('bar')).to.equal('findArrival09bar');
     });
 
   });

@@ -28,7 +28,7 @@ module.exports = function fahrplan(key) {
         return null;
       });
   }
-  function getStationBoard(type, stationId, date) {
+  function findServices(type, stationId, date) {
     var endpoint;
     if (type === 'departures') endpoint = '/departureBoard';
     else if (type === 'arrivals') endpoint = '/arrivalBoard';
@@ -58,11 +58,11 @@ module.exports = function fahrplan(key) {
       find: findStation,
       get: getStation,
     },
-    departuresBoard: {
-      get: function(stationId, date) { return getStationBoard('departures', stationId, date) },
+    departure: {
+      find: function(stationId, date) { return findServices('departures', stationId, date) },
     },
-    arrivalsBoard: {
-      get: function(stationId, date) { return getStationBoard('arrivals', stationId, date) },
+    arrival: {
+      find: function(stationId, date) { return findServices('arrivals', stationId, date) },
     },
     itinerary: {
       get: getItinerary,
