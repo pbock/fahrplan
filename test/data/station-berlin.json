@@ -1,0 +1,257 @@
+{
+"LocationList":{
+  "noNamespaceSchemaLocation":"http://open-api.bahn.de/bin/rest.exe/v1.0/xsd?name=hafasRestLocation.xsd",
+  "StopLocation":[{
+    "name":"Berlin Hbf",
+    "lon":"13.369548",
+    "lat":"52.525589",
+    "id":"008011160"
+    },{
+    "name":"Berlin Südkreuz",
+    "lon":"13.365314",
+    "lat":"52.475042",
+    "id":"008011113"
+    },{
+    "name":"Berlin Ostbahnhof",
+    "lon":"13.434567",
+    "lat":"52.510972",
+    "id":"008010255"
+    },{
+    "name":"Berlin-Spandau",
+    "lon":"13.197530",
+    "lat":"52.534470",
+    "id":"008010404"
+    },{
+    "name":"Berlin Gesundbrunnen",
+    "lon":"13.388515",
+    "lat":"52.548961",
+    "id":"008011102"
+    },{
+    "name":"Bernau(b Berlin)",
+    "lon":"13.592292",
+    "lat":"52.675834",
+    "id":"008013470"
+    },{
+    "name":"Berlin Wannsee",
+    "lon":"13.179336",
+    "lat":"52.421053",
+    "id":"008010405"
+    },{
+    "name":"Berlin-Lichtenberg",
+    "lon":"13.496925",
+    "lat":"52.509894",
+    "id":"008010036"
+    },{
+    "name":"BERLINO",
+    "lon":"13.386987",
+    "lat":"52.520501",
+    "id":"008096003"
+    }],
+  "CoordLocation":[{
+    "name":"Berlin,  Lido Kultur- + Veranstaltungs GmbH (Kultu",
+    "lon":"13.444968",
+    "lat":"52.499169",
+    "type":"POI"
+    },{
+    "name":"Berlin, A.b.santos (Gastronomie)",
+    "lon":"13.382501",
+    "lat":"52.531099",
+    "type":"POI"
+    },{
+    "name":"Berlin, A la Carté (Gastronomie)",
+    "lon":"13.367301",
+    "lat":"52.493695",
+    "type":"POI"
+    },{
+    "name":"Berlin, A Trane (Kultur und Unterhaltung)",
+    "lon":"13.320197",
+    "lat":"52.506702",
+    "type":"POI"
+    },{
+    "name":"Berlin, A + O Hotel Friedrichshain (Hotel)",
+    "lon":"13.468600",
+    "lat":"52.506999",
+    "type":"POI"
+    },{
+    "name":"Berlin, Aaina (Gastronomie)",
+    "lon":"13.426800",
+    "lat":"52.499295",
+    "type":"POI"
+    },{
+    "name":"Berlin, Aapka (Gastronomie)",
+    "lon":"13.404696",
+    "lat":"52.533598",
+    "type":"POI"
+    },{
+    "name":"Berlin, Aarti (Gastronomie)",
+    "lon":"13.393999",
+    "lat":"52.524699",
+    "type":"POI"
+    },{
+    "name":"Berlin, Abacus Tierpark Hotel (Hotel)",
+    "lon":"13.520396",
+    "lat":"52.500599",
+    "type":"POI"
+    },{
+    "name":"Berlin, abba Berlin Hotel (Hotel)",
+    "lon":"13.321806",
+    "lat":"52.499844",
+    "type":"POI"
+    },{
+    "name":"Berlin, Abendstern (Hotel)",
+    "lon":"13.304403",
+    "lat":"52.505696",
+    "type":"POI"
+    },{
+    "name":"Berlin, Abgedreht (Gastronomie)",
+    "lon":"13.451799",
+    "lat":"52.515602",
+    "type":"POI"
+    },{
+    "name":"Berlin, Abion Spreebogen Waterside Hotel (Hotel)",
+    "lon":"13.347399",
+    "lat":"52.524798",
+    "type":"POI"
+    },{
+    "name":"Berlin, Abirams (Gastronomie)",
+    "lon":"13.394601",
+    "lat":"52.492500",
+    "type":"POI"
+    },{
+    "name":"Berlin, Abraxas (Kultur und Unterhaltung)",
+    "lon":"13.316404",
+    "lat":"52.506100",
+    "type":"POI"
+    },{
+    "name":"Berlin, Abricot (Gastronomie)",
+    "lon":"13.410898",
+    "lat":"52.488697",
+    "type":"POI"
+    },{
+    "name":"Berlin, Acapulco (Gastronomie)",
+    "lon":"13.445003",
+    "lat":"52.516797",
+    "type":"POI"
+    },{
+    "name":"Berlin, Ach! Niko! Ach! (Gastronomie)",
+    "lon":"13.298201",
+    "lat":"52.498396",
+    "type":"POI"
+    },{
+    "name":"Berlin, Active Hotelhellemitte (Hotel)",
+    "lon":"13.603600",
+    "lat":"52.537302",
+    "type":"POI"
+    },{
+    "name":"Berlin, Acud (Kultur und Unterhaltung)",
+    "lon":"13.400003",
+    "lat":"52.532897",
+    "type":"POI"
+    },{
+    "name":"Berlin, Adagio (Gastronomie)",
+    "lon":"13.398197",
+    "lat":"52.578203",
+    "type":"POI"
+    },{
+    "name":"Berlin, Adam (Hotel)",
+    "lon":"13.302300",
+    "lat":"52.506397",
+    "type":"POI"
+    },{
+    "name":"Berlin, Adams (Gastronomie)",
+    "lon":"13.388497",
+    "lat":"52.519296",
+    "type":"POI"
+    },{
+    "name":"Berlin, Adass Jisroel (Öffentliche Einrichtungen)",
+    "lon":"13.393298",
+    "lat":"52.527000",
+    "type":"POI"
+    },{
+    "name":"Berlin, Addis (Gastronomie)",
+    "lon":"13.387104",
+    "lat":"52.498001",
+    "type":"POI"
+    },{
+    "name":"Berlin, Adebar (Gastronomie)",
+    "lon":"13.405496",
+    "lat":"52.524798",
+    "type":"POI"
+    },{
+    "name":"Berlin, Adele (Gastronomie)",
+    "lon":"13.425101",
+    "lat":"52.529598",
+    "type":"POI"
+    },{
+    "name":"Berlin, Adina Apartment Hotel Hauptbahnhof (Hotel)",
+    "lon":"13.377962",
+    "lat":"52.528366",
+    "type":"POI"
+    },{
+    "name":"Berlin, Adlermühle (Gastronomie)",
+    "lon":"13.394997",
+    "lat":"52.425197",
+    "type":"POI"
+    },{
+    "name":"Berlin, Adlon (Hotel)",
+    "lon":"13.380200",
+    "lat":"52.516303",
+    "type":"POI"
+    },{
+    "name":"Berlin, Adlonstube (Gastronomie)",
+    "lon":"13.380200",
+    "lat":"52.516303",
+    "type":"POI"
+    },{
+    "name":"Berlin, Admiralspalast (Kultur und Unterhaltung)",
+    "lon":"13.388201",
+    "lat":"52.520600",
+    "type":"POI"
+    },{
+    "name":"Berlin, Adnan (Gastronomie)",
+    "lon":"13.317096",
+    "lat":"52.503700",
+    "type":"POI"
+    },{
+    "name":"Berlin, Adolf-Glassbrenner-Grundschule (Öffentlich",
+    "lon":"13.381396",
+    "lat":"52.491601",
+    "type":"POI"
+    },{
+    "name":"Berlin, Adolf Reichwein Schule (Öffentliche Einric",
+    "lon":"13.440401",
+    "lat":"52.484400",
+    "type":"POI"
+    },{
+    "name":"Berlin, Adrema (Hotel)",
+    "lon":"13.329501",
+    "lat":"52.523297",
+    "type":"POI"
+    },{
+    "name":"Berlin, Adria (Kultur und Unterhaltung)",
+    "lon":"13.317896",
+    "lat":"52.454196",
+    "type":"POI"
+    },{
+    "name":"Berlin, Aedes (Gastronomie)",
+    "lon":"13.321896",
+    "lat":"52.505003",
+    "type":"POI"
+    },{
+    "name":"Berlin, African Affair (Gastronomie)",
+    "lon":"13.349898",
+    "lat":"52.506801",
+    "type":"POI"
+    },{
+    "name":"Berlin, Agon (Hotel)",
+    "lon":"13.420697",
+    "lat":"52.524699",
+    "type":"POI"
+    },{
+    "name":"Berlin, Agon Opera (Hotel)",
+    "lon":"13.312404",
+    "lat":"52.500203",
+    "type":"POI"
+    }]
+  }
+}

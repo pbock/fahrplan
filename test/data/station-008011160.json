@@ -1,0 +1,11 @@
+{
+"LocationList":{
+  "noNamespaceSchemaLocation":"http://open-api.bahn.de/bin/rest.exe/v1.0/xsd?name=hafasRestLocation.xsd",
+  "StopLocation":{
+    "name":"Berlin Hbf",
+    "lon":"13.369548",
+    "lat":"52.525589",
+    "id":"008011160"
+    }
+  }
+}
