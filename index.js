@@ -41,7 +41,9 @@ module.exports = function fahrplan(key) {
       .then(parsers.stationBoard);
   }
   function getItinerary(url) {
-    return request(url).then(parsers.itinerary);
+    return request(url)
+      .then(function (res) { res.api = api; return res; })
+      .then(parsers.itinerary);
   }
 
   var api = {
