@@ -59,6 +59,19 @@ describe('fahrplan', function () {
         })
         .catch(done);
     });
+
+    it('accepts a date as a second argument', function (done) {
+      var date = new Date(Date.now() + 24 * 60 * 60 * 1000);
+      fahrplan.departuresBoard.get(berlinId, date)
+        .then(function (departures) {
+          expect(departures).to.have.length.above(0);
+          departures.forEach(function (departure) {
+            expect(departure.departure.valueOf() >= date.valueOf()).to.be.true;
+          });
+          done();
+        })
+        .catch(done);
+    });
   });
 
   describe('#arrivalsBoard.get()', function () {
@@ -69,6 +82,19 @@ describe('fahrplan', function () {
           arrivals.forEach(function (arrival) {
             expect(arrival).to.contain.keys('name', 'type', 'station', 'arrival', 'origin');
             expect(arrival.arrival).to.be.an.instanceOf(Date);
+          });
+          done();
+        })
+        .catch(done);
+    });
+
+    it('accepts a date as a second argument', function (done) {
+      var date = new Date(Date.now() + 24 * 60 * 60 * 1000);
+      fahrplan.arrivalsBoard.get(berlinId, date)
+        .then(function (arrivals) {
+          expect(arrivals).to.have.length.above(0);
+          arrivals.forEach(function (arrival) {
+            expect(arrival.arrival.valueOf() >= date.valueOf()).to.be.true;
           });
           done();
         })

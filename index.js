@@ -51,10 +51,10 @@ module.exports = function fahrplan(key) {
       find: findStation,
     },
     departuresBoard: {
-      get: function(stationId) { return getStationBoard('departures', stationId) },
+      get: function(stationId, date) { return getStationBoard('departures', stationId, date) },
     },
     arrivalsBoard: {
-      get: function(stationId) { return getStationBoard('arrivals', stationId) },
+      get: function(stationId, date) { return getStationBoard('arrivals', stationId, date) },
     },
     itinerary: {
       get: getItinerary,
