@@ -83,7 +83,7 @@ describe('parsers', function () {
     });
   });
 
-  describe('#stationBoard', function () {
+  describe('#stationBoard()', function () {
     var p = parsers.stationBoard;
     it('expects a { data: \'{"some JSON":"data"}\' } object', responseObjectTest(p));
 
@@ -164,6 +164,111 @@ describe('parsers', function () {
       expect(output.destination).to.equal(input.direction);
       expect(output.platform).to.equal(input.track);
       expect(output.departure).to.deep.equal(dateUtil.parse(input.date, input.time));
+    });
+  });
+
+  describe('#itinerary()', function () {
+    var p = parsers.itinerary;
+    it('expects a { data: \'{"some JSON":"data"}\' } object', responseObjectTest(p));
+
+    var ic142 = { data: fs.readFileSync(pr(__dirname, '../data/itinerary-ic142.json')).toString() };
+    var simpleItinerary = {
+      Stops: {
+        Stop: [
+          {
+            name: 'First stop',
+            id: '08',
+            lon: '12.34',
+            lat: '-87.65',
+            routeIdx: '0',
+            depTime: '00:00',
+            depDate: '2020-05-05',
+          },
+          {
+            name: 'Last stop',
+            id: '09',
+            lon: '23.45',
+            lat: '-76.54',
+            routeIdx: '1',
+            arrTime: '13:00',
+            arrDate: '2020-05-05',
+          },
+        ],
+      },
+      Names: {
+        Name: {
+          name: 'IC 123',
+          routeIdxFrom: '0',
+          routeIdxTo: '1',
+        },
+      },
+      Types: {
+        Type: {
+          type: 'IC',
+          routeIdxFrom: '0',
+          routeIdxTo: '1',
+        },
+      },
+      Operators: {
+        Operator: {
+          name: 'NASA',
+          routeIdxFrom: '0',
+          routeIdxTo: '1',
+        },
+      },
+      Notes: {
+        Note: {
+          mostProperties: 'will just get passed straight through',
+          except: '$, which becomes',
+          $: 'description',
+        },
+      },
+    };
+    var simple = { data: JSON.stringify({ JourneyDetail: simpleItinerary }) };
+
+    it('returns an object with "stops", "names", "types", "operators" and "notes" arrays', function () {
+      var itinerary = p(ic142);
+      expect(itinerary.stops).to.be.an('array');
+      expect(itinerary.names).to.be.an('array');
+      expect(itinerary.types).to.be.an('array');
+      expect(itinerary.operators).to.be.an('array');
+      expect(itinerary.notes).to.be.an('array');
+    });
+
+    it('returns as many "stops" as there are in the input', function () {
+      var itinerary = p(ic142);
+      expect(itinerary.stops.length).to.equal(JSON.parse(ic142.data).JourneyDetail.Stops.Stop.length);
+    });
+
+    it('converts the "stops" correctly', function () {
+      var itinerary = p(simple);
+      expect(itinerary.stops.length).to.equal(2);
+      itinerary.stops.forEach(function (output, i) {
+        var input = simpleItinerary.Stops.Stop[i];
+        expect(output.station.name).to.equal(input.name);
+        expect(output.station.id).to.equal(input.id);
+        expect(output.station.latitude).to.equal(parseFloat(input.lat));
+        expect(output.station.longitude).to.equal(parseFloat(input.lon));
+        expect(output.index).to.equal(parseInt(input.routeIdx));
+        if (input.arrTime) {
+          expect(output.arrival).to.deep.equal(dateUtil.parse(input.arrDate, input.arrTime));
+        }
+        if (input.depTime) {
+          expect(output.departure).to.deep.equal(dateUtil.parse(input.depDate, input.depTime));
+        }
+      })
+    });
+
+    it('cleans up the metadata', function () {
+      var itinerary = p(simple);
+      expect(itinerary.names[0]).to.deep.equal({ name: 'IC 123', fromIndex: 0, toIndex: 1 });
+      expect(itinerary.types[0]).to.deep.equal({ type: 'IC', fromIndex: 0, toIndex: 1 });
+      expect(itinerary.operators[0]).to.deep.equal({ name: 'NASA', fromIndex: 0, toIndex: 1 });
+      expect(itinerary.notes[0]).to.deep.equal({
+        mostProperties: 'will just get passed straight through',
+        except: '$, which becomes',
+        description: 'description',
+      });
     });
   });
 });
