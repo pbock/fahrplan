@@ -1,0 +1,246 @@
+{
+"ArrivalBoard":{
+  "noNamespaceSchemaLocation":"http://open-api.bahn.de/bin/rest.exe/v1.0/xsd?name=hafasRestArrivalBoard.xsd",
+  "Arrival":[{
+    "name":"ICE 1045",
+    "type":"ICE",
+    "stopid":"8098160",
+    "stop":"Berlin Hbf (tief)",
+    "time":"12:09",
+    "date":"2016-02-27",
+    "origin":"Köln Hbf",
+    "track":"7 D - G",
+    "JourneyDetailRef":{
+      "ref":"http://open-api.bahn.de/bin/rest.exe/v1.0/journeyDetail?ref=788346%2F263313%2F467666%2F28949%2F80%3Fdate%3D2016-02-27%26station_evaId%3D8098160%26station_type%3Darr%26authKey%3DDBhackFrankfurt0316%26lang%3Den%26format%3Djson%26"
+      }
+    },{
+    "name":"ICE 1630",
+    "type":"ICE",
+    "stopid":"8098160",
+    "stop":"Berlin Hbf (tief)",
+    "time":"12:19",
+    "date":"2016-02-27",
+    "origin":"Ostseebad Binz",
+    "track":"3",
+    "JourneyDetailRef":{
+      "ref":"http://open-api.bahn.de/bin/rest.exe/v1.0/journeyDetail?ref=588612%2F197434%2F404710%2F6151%2F80%3Fdate%3D2016-02-27%26station_evaId%3D8098160%26station_type%3Darr%26authKey%3DDBhackFrankfurt0316%26lang%3Den%26format%3Djson%26"
+      }
+    },{
+    "name":"ICE 1209",
+    "type":"ICE",
+    "stopid":"8098160",
+    "stop":"Berlin Hbf (tief)",
+    "time":"12:19",
+    "date":"2016-02-27",
+    "origin":"Hamburg-Altona",
+    "track":"2",
+    "JourneyDetailRef":{
+      "ref":"http://open-api.bahn.de/bin/rest.exe/v1.0/journeyDetail?ref=845295%2F286626%2F389154%2F87188%2F80%3Fdate%3D2016-02-27%26station_evaId%3D8098160%26station_type%3Darr%26authKey%3DDBhackFrankfurt0316%26lang%3Den%26format%3Djson%26"
+      }
+    },{
+    "name":"ICE 694",
+    "type":"ICE",
+    "stopid":"8011160",
+    "stop":"Berlin Hbf",
+    "time":"12:25",
+    "date":"2016-02-27",
+    "origin":"Stuttgart Hbf",
+    "track":"12",
+    "JourneyDetailRef":{
+      "ref":"http://open-api.bahn.de/bin/rest.exe/v1.0/journeyDetail?ref=421260%2F144243%2F168354%2F56243%2F80%3Fdate%3D2016-02-27%26station_evaId%3D8011160%26station_type%3Darr%26authKey%3DDBhackFrankfurt0316%26lang%3Den%26format%3Djson%26"
+      }
+    },{
+    "name":"IC 2286",
+    "type":"IC",
+    "stopid":"8098160",
+    "stop":"Berlin Hbf (tief)",
+    "time":"12:30",
+    "date":"2016-02-27",
+    "origin":"Leipzig Hbf",
+    "track":"7",
+    "JourneyDetailRef":{
+      "ref":"http://open-api.bahn.de/bin/rest.exe/v1.0/journeyDetail?ref=251742%2F86184%2F14814%2F76507%2F80%3Fdate%3D2016-02-27%26station_evaId%3D8098160%26station_type%3Darr%26authKey%3DDBhackFrankfurt0316%26lang%3Den%26format%3Djson%26"
+      }
+    },{
+    "name":"ICE 1034",
+    "type":"ICE",
+    "stopid":"8098160",
+    "stop":"Berlin Hbf (tief)",
+    "time":"12:34",
+    "date":"2016-02-27",
+    "origin":"Berlin Südkreuz",
+    "track":"8",
+    "JourneyDetailRef":{
+      "ref":"http://open-api.bahn.de/bin/rest.exe/v1.0/journeyDetail?ref=506826%2F169460%2F474730%2F68423%2F80%3Fdate%3D2016-02-27%26station_evaId%3D8098160%26station_type%3Darr%26authKey%3DDBhackFrankfurt0316%26lang%3Den%26format%3Djson%26"
+      }
+    },{
+    "name":"EC 176",
+    "type":"EC",
+    "stopid":"8098160",
+    "stop":"Berlin Hbf (tief)",
+    "time":"12:58",
+    "date":"2016-02-27",
+    "origin":"Praha hl.n.",
+    "track":"8",
+    "JourneyDetailRef":{
+      "ref":"http://open-api.bahn.de/bin/rest.exe/v1.0/journeyDetail?ref=787785%2F267644%2F518638%2F3276%2F80%3Fdate%3D2016-02-27%26station_evaId%3D8098160%26station_type%3Darr%26authKey%3DDBhackFrankfurt0316%26lang%3Den%26format%3Djson%26"
+      }
+    },{
+    "name":"ICE 1535",
+    "type":"ICE",
+    "stopid":"8098160",
+    "stop":"Berlin Hbf (tief)",
+    "time":"13:01",
+    "date":"2016-02-27",
+    "origin":"Frankfurt(Main)Hbf",
+    "track":"7",
+    "JourneyDetailRef":{
+      "ref":"http://open-api.bahn.de/bin/rest.exe/v1.0/journeyDetail?ref=747543%2F250257%2F746152%2F123895%2F80%3Fdate%3D2016-02-27%26station_evaId%3D8098160%26station_type%3Darr%26authKey%3DDBhackFrankfurt0316%26lang%3Den%26format%3Djson%26"
+      }
+    },{
+    "name":"ICE 545",
+    "type":"ICE",
+    "stopid":"8098160",
+    "stop":"Berlin Hbf (tief)",
+    "time":"13:07",
+    "date":"2016-02-27",
+    "origin":"Köln Hbf",
+    "track":"2 D - G",
+    "JourneyDetailRef":{
+      "ref":"http://open-api.bahn.de/bin/rest.exe/v1.0/journeyDetail?ref=163389%2F57658%2F428194%2F159634%2F80%3Fdate%3D2016-02-27%26station_evaId%3D8098160%26station_type%3Darr%26authKey%3DDBhackFrankfurt0316%26lang%3Den%26format%3Djson%26"
+      }
+    },{
+    "name":"EC 54",
+    "type":"EC",
+    "stopid":"8011160",
+    "stop":"Berlin Hbf",
+    "time":"13:15",
+    "date":"2016-02-27",
+    "origin":"Gdynia Glowna",
+    "track":"14",
+    "JourneyDetailRef":{
+      "ref":"http://open-api.bahn.de/bin/rest.exe/v1.0/journeyDetail?ref=802554%2F273023%2F268466%2F133285%2F80%3Fdate%3D2016-02-27%26station_evaId%3D8011160%26station_type%3Darr%26authKey%3DDBhackFrankfurt0316%26lang%3Den%26format%3Djson%26"
+      }
+    },{
+    "name":"ICE 707",
+    "type":"ICE",
+    "stopid":"8098160",
+    "stop":"Berlin Hbf (tief)",
+    "time":"13:21",
+    "date":"2016-02-27",
+    "origin":"Hamburg-Altona",
+    "track":"1",
+    "JourneyDetailRef":{
+      "ref":"http://open-api.bahn.de/bin/rest.exe/v1.0/journeyDetail?ref=167454%2F59689%2F915872%2F402118%2F80%3Fdate%3D2016-02-27%26station_evaId%3D8098160%26station_type%3Darr%26authKey%3DDBhackFrankfurt0316%26lang%3Den%26format%3Djson%26"
+      }
+    },{
+    "name":"IC 141",
+    "type":"IC",
+    "stopid":"8011160",
+    "stop":"Berlin Hbf",
+    "time":"13:22",
+    "date":"2016-02-27",
+    "origin":"Amsterdam Centraal",
+    "track":"11",
+    "JourneyDetailRef":{
+      "ref":"http://open-api.bahn.de/bin/rest.exe/v1.0/journeyDetail?ref=23307%2F12725%2F945890%2F465176%2F80%3Fdate%3D2016-02-27%26station_evaId%3D8011160%26station_type%3Darr%26authKey%3DDBhackFrankfurt0316%26lang%3Den%26format%3Djson%26"
+      }
+    },{
+    "name":"IC 2387",
+    "type":"IC",
+    "stopid":"8098160",
+    "stop":"Berlin Hbf (tief)",
+    "time":"13:23",
+    "date":"2016-02-27",
+    "origin":"Rostock Hbf",
+    "track":"2",
+    "JourneyDetailRef":{
+      "ref":"http://open-api.bahn.de/bin/rest.exe/v1.0/journeyDetail?ref=529689%2F179041%2F286824%2F33151%2F80%3Fdate%3D2016-02-27%26station_evaId%3D8098160%26station_type%3Darr%26authKey%3DDBhackFrankfurt0316%26lang%3Den%26format%3Djson%26"
+      }
+    },{
+    "name":"ICE 374",
+    "type":"ICE",
+    "stopid":"8011160",
+    "stop":"Berlin Hbf",
+    "time":"13:28",
+    "date":"2016-02-27",
+    "origin":"Basel SBB",
+    "track":"12",
+    "JourneyDetailRef":{
+      "ref":"http://open-api.bahn.de/bin/rest.exe/v1.0/journeyDetail?ref=552960%2F187102%2F860974%2F246167%2F80%3Fdate%3D2016-02-27%26station_evaId%3D8011160%26station_type%3Darr%26authKey%3DDBhackFrankfurt0316%26lang%3Den%26format%3Djson%26"
+      }
+    },{
+    "name":"ICE 1682",
+    "type":"ICE",
+    "stopid":"8098160",
+    "stop":"Berlin Hbf (tief)",
+    "time":"13:33",
+    "date":"2016-02-27",
+    "origin":"München Hbf",
+    "track":"8",
+    "JourneyDetailRef":{
+      "ref":"http://open-api.bahn.de/bin/rest.exe/v1.0/journeyDetail?ref=433320%2F145741%2F120422%2F84229%2F80%3Fdate%3D2016-02-27%26station_evaId%3D8098160%26station_type%3Darr%26authKey%3DDBhackFrankfurt0316%26lang%3Den%26format%3Djson%26"
+      }
+    },{
+    "name":"ICE 847",
+    "type":"ICE",
+    "stopid":"8098160",
+    "stop":"Berlin Hbf (tief)",
+    "time":"14:09",
+    "date":"2016-02-27",
+    "origin":"Köln Hbf",
+    "track":"6 D - G",
+    "JourneyDetailRef":{
+      "ref":"http://open-api.bahn.de/bin/rest.exe/v1.0/journeyDetail?ref=602841%2F205169%2F177206%2F112344%2F80%3Fdate%3D2016-02-27%26station_evaId%3D8098160%26station_type%3Darr%26authKey%3DDBhackFrankfurt0316%26lang%3Den%26format%3Djson%26"
+      }
+    },{
+    "name":"ICE 1683",
+    "type":"ICE",
+    "stopid":"8098160",
+    "stop":"Berlin Hbf (tief)",
+    "time":"14:19",
+    "date":"2016-02-27",
+    "origin":"Hamburg-Altona",
+    "track":"1",
+    "JourneyDetailRef":{
+      "ref":"http://open-api.bahn.de/bin/rest.exe/v1.0/journeyDetail?ref=413592%2F139169%2F129598%2F73065%2F80%3Fdate%3D2016-02-27%26station_evaId%3D8098160%26station_type%3Darr%26authKey%3DDBhackFrankfurt0316%26lang%3Den%26format%3Djson%26"
+      }
+    },{
+    "name":"IC 2252",
+    "type":"IC",
+    "stopid":"8098160",
+    "stop":"Berlin Hbf (tief)",
+    "time":"14:19",
+    "date":"2016-02-27",
+    "origin":"Ostseebad Binz",
+    "track":"2",
+    "JourneyDetailRef":{
+      "ref":"http://open-api.bahn.de/bin/rest.exe/v1.0/journeyDetail?ref=366450%2F124344%2F536970%2F146335%2F80%3Fdate%3D2016-02-27%26station_evaId%3D8098160%26station_type%3Darr%26authKey%3DDBhackFrankfurt0316%26lang%3Den%26format%3Djson%26"
+      }
+    },{
+    "name":"ICE 692",
+    "type":"ICE",
+    "stopid":"8011160",
+    "stop":"Berlin Hbf",
+    "time":"14:25",
+    "date":"2016-02-27",
+    "origin":"Stuttgart Hbf",
+    "track":"12",
+    "JourneyDetailRef":{
+      "ref":"http://open-api.bahn.de/bin/rest.exe/v1.0/journeyDetail?ref=773886%2F261759%2F554812%2F19444%2F80%3Fdate%3D2016-02-27%26station_evaId%3D8011160%26station_type%3Darr%26authKey%3DDBhackFrankfurt0316%26lang%3Den%26format%3Djson%26"
+      }
+    },{
+    "name":"ICE 1036",
+    "type":"ICE",
+    "stopid":"8098160",
+    "stop":"Berlin Hbf (tief)",
+    "time":"14:30",
+    "date":"2016-02-27",
+    "origin":"Leipzig Hbf",
+    "track":"7",
+    "JourneyDetailRef":{
+      "ref":"http://open-api.bahn.de/bin/rest.exe/v1.0/journeyDetail?ref=553947%2F185170%2F47566%2F160866%2F80%3Fdate%3D2016-02-27%26station_evaId%3D8098160%26station_type%3Darr%26authKey%3DDBhackFrankfurt0316%26lang%3Den%26format%3Djson%26"
+      }
+    }]
+  }
+}

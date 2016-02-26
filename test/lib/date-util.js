@@ -39,5 +39,13 @@ describe('dateUtil', function () {
     it('works with moment objects too', function () {
       expect(ft(moment({ hour: 23, minute: 42 }))).to.equal('23:42');
     });
-  })
+  });
+
+  describe('#parse', function () {
+    var p = dateUtil.parse;
+    it('converts its arguments from (YYYY-MM-DD, HH:MM) notation to a Date object in the local timezone', function () {
+      expect(p('2016-01-01', '00:00')).to.deep.equal(new Date(2016, 0, 1));
+      expect(p('1900-12-31', '23:59')).to.deep.equal(new Date(1900, 11, 31, 23, 59));
+    });
+  });
 });

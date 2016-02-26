@@ -1,0 +1,17 @@
+{
+"DepartureBoard":{
+  "noNamespaceSchemaLocation":"http://open-api.bahn.de/bin/rest.exe/v1.0/xsd?name=hafasRestDepartureBoard.xsd",
+  "Departure":{
+    "name":"EN 23",
+    "type":"EN",
+    "stopid":"2000058",
+    "stop":"Moskva Belorusskaja",
+    "time":"22:15",
+    "date":"2016-02-26",
+    "direction":"Strasbourg",
+    "JourneyDetailRef":{
+      "ref":"http://open-api.bahn.de/bin/rest.exe/v1.0/journeyDetail?ref=844797%2F286761%2F867826%2F152314%2F80%3Fdate%3D2016-02-26%26station_evaId%3D2000058%26station_type%3Ddep%26authKey%3DDBhackFrankfurt0316%26lang%3Den%26format%3Djson%26"
+      }
+    }
+  }
+}
