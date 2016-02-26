@@ -8,6 +8,8 @@ var dateUtil = require('./lib/date-util');
 
 var BASE = 'http://open-api.bahn.de/bin/rest.exe';
 
+var RE_STATION_ID = /^\d{9}$/;
+
 module.exports = function fahrplan(key) {
   if (!key) throw new Error('No API key provided');
 
@@ -28,7 +30,7 @@ module.exports = function fahrplan(key) {
         return null;
       });
   }
-  function findServices(type, stationId, date) {
+  function findServices(type, query, date) {
     var endpoint;
     if (type === 'departures') endpoint = '/departureBoard';
     else if (type === 'arrivals') endpoint = '/arrivalBoard';
@@ -36,14 +38,32 @@ module.exports = function fahrplan(key) {
 
     if (!date) date = Date.now();
 
-    return request(
-      BASE + endpoint + '?' + qs.stringify({
-        authKey: key,
-        id: stationId,
-        date: dateUtil.formatDate(date),
-        time: dateUtil.formatTime(date),
-        format: 'json',
-      }))
+    // We want to support station names as well as IDs, but the API only
+    // officially supports IDs.
+    // The API supports querying for things that aren't IDs, but the behaviour
+    // is not documented and surprising (e.g. searching for "B") only returns
+    // results for Berlin Südkreuz, not Berlin Hbf.
+    // For predictable behaviour, we'll pass anything that doesn't look like an
+    // ID through getStation() first.
+    var station;
+    if (RE_STATION_ID.test(query)) {
+      station = { id: query };
+    } else {
+      station = getStation(query);
+    }
+
+    return Promise.resolve(station)
+      .then(function (station) {
+        return request(
+          BASE + endpoint + '?' + qs.stringify({
+            authKey: key,
+            id: station.id,
+            date: dateUtil.formatDate(date),
+            time: dateUtil.formatTime(date),
+            format: 'json',
+          })
+        )
+      })
       .then(function (res) { res.api = api; return res; })
       .then(parsers.stationBoard);
   }

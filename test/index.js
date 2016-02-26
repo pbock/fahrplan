@@ -89,6 +89,27 @@ describe('fahrplan', function () {
         .catch(done);
     });
 
+    it('returns the same results for station IDs and station names', function (done) {
+      Promise.all([
+        fahrplan.station.get('B')
+          .then(function (station) { return fahrplan.departure.find(station.id) }),
+        fahrplan.departure.find('B'),
+      ])
+      .then(function (results) {
+        var byName = results[0];
+        var byId = results[1];
+        // Can't use deep.equal because itinerary.get aren't equal
+        var keys = [ 'name', 'type', 'station', 'departure', 'destination', 'platform' ];
+        byName.forEach(function (station, i) {
+          keys.forEach(function (key) {
+            expect(byName[i][key]).to.deep.equal(byId[i][key]);
+          });
+        });
+        done();
+      })
+      .catch(done);
+    });
+
     it('accepts a date as a second argument', function (done) {
       var date = new Date(Date.now() + 24 * 60 * 60 * 1000);
       fahrplan.departure.find(berlinId, date)
@@ -115,6 +136,27 @@ describe('fahrplan', function () {
           done();
         })
         .catch(done);
+    });
+
+    it('returns the same results for station IDs and station names', function (done) {
+      Promise.all([
+        fahrplan.station.get('B')
+          .then(function (station) { return fahrplan.arrival.find(station.id) }),
+        fahrplan.arrival.find('B'),
+      ])
+      .then(function (results) {
+        var byName = results[0];
+        var byId = results[1];
+        // Can't use deep.equal because itinerary.get aren't equal
+        var keys = [ 'name', 'type', 'station', 'arrival', 'origin', 'platform' ];
+        byName.forEach(function (station, i) {
+          keys.forEach(function (key) {
+            expect(byName[i][key]).to.deep.equal(byId[i][key]);
+          });
+        });
+        done();
+      })
+      .catch(done);
     });
 
     it('accepts a date as a second argument', function (done) {

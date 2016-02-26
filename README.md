@@ -16,7 +16,7 @@ fahrplan.station.get('Berlin')
     itinerary.stops.forEach(stop => console.log(stop.station.name));
   });
 
-fahrplan.arrival.find('8098160', new Date(2016, 0, 1))
+fahrplan.arrival.find('Berlin Hbf', new Date(2016, 0, 1))
   .then(arrivals => console.log('The first train of the year was %s from %s', arrivals[0].name, arrivals[0].origin));
 ```
 
@@ -109,9 +109,11 @@ fahrplan.station.get('München Hbf').then(doSomethingWithMunich);
 }
 ```
 
-### `departure.find(stationId, [date])`
+### `departure.find(station, [date])`
 
-Looks up all trains leaving from the station `stationId` at the given `date` (defaults to now).
+Looks up all trains leaving from the station `station` at the given `date` (defaults to now).
+
+`station` can be a Station ID (recommended) or anything that `station.get()` understands. If it's an ID, it will be passed straight through to the API, otherwise it will first go through `station.get()`, causing an additional HTTP request. For faster results and lower traffic, it's best to use an ID if you know it.
 
 Example:
 
@@ -119,7 +121,7 @@ Example:
 // All trains leaving from Berlin Ostbahnhof right now
 fahrplan.departure.find('008010255').then(doSomethingWithTheResult);
 // Find the first train that left from Berlin Hbf in 2016
-fahrplan.departure.find('008011160', new Date(2016, 0, 1)).then(departures => departures[0]);
+fahrplan.departure.find('Berlin Hbf', new Date(2016, 0, 1)).then(departures => departures[0]);
 ```
 
 **Returns** a Promise that resolves with an array like this:
@@ -148,15 +150,17 @@ fahrplan.station.get('Köln')
   .then(doSomethingWithTheDeparturesBoard);
 ```
 
-### `arrival.find(stationId, [date])`
+### `arrival.find(station, [date])`
 
 Looks up all trains leaving from the station `stationId` at the given `date` (defaults to now).
+
+`station` can be a Station ID (recommended) or anything that `station.get()` understands. If it's an ID, it will be passed straight through to the API, otherwise it will first go through `station.get()`, causing an additional HTTP request. For faster results and lower traffic, it's best to use an ID if you know it.
 
 Example:
 
 ```js
 // All trains arriving in Berlin Ostbahnhof right now
-fahrplan.arrival.find('008010255').then(doSomethingWithTheResult);
+fahrplan.arrival.find('Berlin Ostbahnhof').then(doSomethingWithTheResult);
 // Find the first train that arrived in Berlin Hbf in 2016
 fahrplan.arrival.find('008011160', new Date(2016, 0, 1)).then(arrivals => arrivals[0]);
 ```
