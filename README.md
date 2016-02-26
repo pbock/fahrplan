@@ -211,11 +211,13 @@ fahrplan.arrivalsBoard.get('008010255')
 }
 ```
 
-### To Do
-
-* Improve error handling (the client doesn't throw on all API errors yet, you may sometimes get an empty result when you should get an error)
-
 ### Known issues
+
+#### Error handling
+
+The client doesn't throw on all API errors yet, you may sometimes get an empty result when you should get an error.
+
+#### Timezone support
 
 All dates and times are assumed to be in the timezone of your machine. This is fine for most of the queries you will want to do, but it means that you can run into trouble if your computer is not in Central European Time.
 
