@@ -40,6 +40,9 @@ module.exports = function fahrplan(key) {
       .then(function (res) { res.api = api; return res; })
       .then(parsers.stationBoard);
   }
+  function getItinerary(url) {
+    return request(url).then(parsers.itinerary);
+  }
 
   var api = {
     station: {
@@ -50,6 +53,9 @@ module.exports = function fahrplan(key) {
     },
     arrivals: {
       get: function(stationId) { return getStationBoard('arrivals', stationId) },
+    },
+    itinerary: {
+      get: getItinerary,
     },
   };
   return api;
