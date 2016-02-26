@@ -40,27 +40,27 @@ describe('parsers', function () {
     var testDataWithAPI = {
       data: testData.data,
       api: {
-        departures: { get: function (id, date) { return 'getDepartures' + id + date } },
-        arrivals: { get: function (id, date) { return 'getArrivals' + id + date } },
+        departuresBoard: { get: function (id, date) { return 'getDepartures' + id + date } },
+        arrivalsBoard: { get: function (id, date) { return 'getArrivals' + id + date } },
       },
     };
 
-    it('returns an object with "stops" and "places" arrays', function () {
+    it('returns an object with "stations" and "places" arrays', function () {
       var parsed = p(berlinData);
-      expect(parsed).to.include.keys('stops', 'places');
-      expect(parsed.stops).to.be.an('array');
+      expect(parsed).to.include.keys('stations', 'places');
+      expect(parsed.stations).to.be.an('array');
       expect(parsed.places).to.be.an('array');
     });
 
     it('returns as many stations and coordinates as passed in the JSON', function () {
       var parsed = p(berlinData);
-      expect(parsed.stops.length).to.equal(9);
+      expect(parsed.stations.length).to.equal(9);
       expect(parsed.places.length).to.equal(41);
     });
 
     it('converts { lat <String>, lon <String> } to { latitude <Number>, longitude <Number> }', function () {
       var parsed = p(testData);
-      var stop = parsed.stops[0];
+      var stop = parsed.stations[0];
       expect(stop.latitude).to.be.a('number');
       expect(stop.longitude).to.be.a('number');
       expect(stop.latitude).to.equal(3.141592);
@@ -69,7 +69,7 @@ describe('parsers', function () {
 
     it('leaves the "name", "type" and "id" properties intact', function () {
       var parsed = p(testData);
-      var stop = parsed.stops[0];
+      var stop = parsed.stations[0];
       expect(stop.name).to.equal('Test station 1');
       expect(stop.id).to.equal('01234567')
       expect(stop.type).to.be.undefined;
@@ -78,23 +78,23 @@ describe('parsers', function () {
     it('also works when the input "StopLocation"/"CoordLocation" is a single object rather than an array', function () {
       // These are returned when searching for a station ID rather than a string
       var parsed = p(searchByIdData);
-      expect(parsed.stops).to.be.an('array');
+      expect(parsed.stations).to.be.an('array');
       expect(parsed.places).to.be.an('array');
-      expect(parsed.stops[0].name).to.equal('Berlin Hbf');
+      expect(parsed.stations[0].name).to.equal('Berlin Hbf');
     });
 
     it('also works when the input "StopLocation"/"CoordLocation" is undefined', function () {
       var parsed = p({ data: JSON.stringify({ LocationList: {} })});
-      expect(parsed.stops).to.deep.equal([]);
+      expect(parsed.stations).to.deep.equal([]);
       expect(parsed.places).to.deep.equal([]);
     });
 
-    it('adds "departures.get" and "arrivals.get" methods if an API reference was provided', function () {
+    it('adds "departuresBoard.get" and "arrivalsBoard.get" methods if an API reference was provided', function () {
       var parsed = p(testDataWithAPI);
-      expect(parsed.stops[0].departures.get).to.be.a('function');
-      expect(parsed.stops[0].arrivals.get).to.be.a('function');
-      expect(parsed.stops[0].departures.get('foo')).to.equal('getDepartures01234567foo');
-      expect(parsed.stops[0].arrivals.get('bar')).to.equal('getArrivals01234567bar');
+      expect(parsed.stations[0].departuresBoard.get).to.be.a('function');
+      expect(parsed.stations[0].arrivalsBoard.get).to.be.a('function');
+      expect(parsed.stations[0].departuresBoard.get('foo')).to.equal('getDepartures01234567foo');
+      expect(parsed.stations[0].arrivalsBoard.get('bar')).to.equal('getArrivals01234567bar');
     });
   });
 
@@ -255,8 +255,8 @@ describe('parsers', function () {
     var simpleWithApi = {
       data: JSON.stringify({ JourneyDetail: simpleItinerary }),
       api: {
-        departures: { get: function (id, date) { return 'getDepartures' + id + date } },
-        arrivals: { get: function (id, date) { return 'getArrivals' + id + date } },
+        departuresBoard: { get: function (id, date) { return 'getDepartures' + id + date } },
+        arrivalsBoard: { get: function (id, date) { return 'getArrivals' + id + date } },
       },
     };
 
@@ -308,10 +308,10 @@ describe('parsers', function () {
 
     it('adds "departures.get" and "arrivals.get" methods if an API reference was provided', function () {
       var parsed = p(simpleWithApi);
-      expect(parsed.stops[0].station.departures.get('foo')).to.equal('getDepartures08foo');
-      expect(parsed.stops[0].station.arrivals.get('bar')).to.equal('getArrivals08bar');
-      expect(parsed.stops[1].station.departures.get('foo')).to.equal('getDepartures09foo');
-      expect(parsed.stops[1].station.arrivals.get('bar')).to.equal('getArrivals09bar');
+      expect(parsed.stops[0].station.departuresBoard.get('foo')).to.equal('getDepartures08foo');
+      expect(parsed.stops[0].station.arrivalsBoard.get('bar')).to.equal('getArrivals08bar');
+      expect(parsed.stops[1].station.departuresBoard.get('foo')).to.equal('getDepartures09foo');
+      expect(parsed.stops[1].station.arrivalsBoard.get('bar')).to.equal('getArrivals09bar');
     });
 
   });

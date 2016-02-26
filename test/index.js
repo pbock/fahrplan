@@ -19,8 +19,8 @@ describe('Fahrplan', function () {
   it('returns an object with "station.find", "departures.get" and "arrivals.get" methods', function () {
     var fahrplan = new Fahrplan('topsecret');
     expect(fahrplan.station.find).to.be.a('function');
-    expect(fahrplan.departures.get).to.be.a('function');
-    expect(fahrplan.arrivals.get).to.be.a('function');
+    expect(fahrplan.departuresBoard.get).to.be.a('function');
+    expect(fahrplan.arrivalsBoard.get).to.be.a('function');
   });
 });
 
@@ -36,8 +36,8 @@ describe('fahrplan', function () {
           expect(result.places).to.be.an('array');
 
           expect(result.stations[0].name).to.equal('Berlin Hbf');
-          expect(result.stations[0].departures.get).to.be.a('function');
-          expect(result.stations[0].arrivals.get).to.be.a('function');
+          expect(result.stations[0].departuresBoard.get).to.be.a('function');
+          expect(result.stations[0].arrivalsBoard.get).to.be.a('function');
           done();
 
           berlinId = result.stations[0].id;
@@ -46,9 +46,9 @@ describe('fahrplan', function () {
     });
   });
 
-  describe('#departures.get()', function () {
+  describe('#departuresBoard.get()', function () {
     it('resolves with an array of "departures"', function (done) {
-      fahrplan.departures.get(berlinId)
+      fahrplan.departuresBoard.get(berlinId)
         .then(function (departures) {
           departures.forEach(function (departure) {
             expect(departure).to.contain.keys('name', 'type', 'station', 'departure', 'destination');
@@ -60,9 +60,9 @@ describe('fahrplan', function () {
     });
   });
 
-  describe('#arrivals.get()', function (done) {
+  describe('#arrivalsBoard.get()', function () {
     it('resolves with an array of "arrivals"', function (done) {
-      fahrplan.arrivals.get(berlinId)
+      fahrplan.arrivalsBoard.get(berlinId)
         .then(function (arrivals) {
           arrivals.forEach(function (arrival) {
             expect(arrival).to.contain.keys('name', 'type', 'station', 'arrival', 'origin');
@@ -76,7 +76,7 @@ describe('fahrplan', function () {
 
   it('returns chainable promises', function (done) {
     fahrplan.station.find('Berlin')
-      .then(function (stations) { return stations.stations[0].departures.get() })
+      .then(function (stations) { return stations.stations[0].departuresBoard.get() })
       .then(function (departures) { return departures[0].itinerary.get() })
       .then(function (itinerary) {
         expect(itinerary.stops).to.have.length.above(0);
