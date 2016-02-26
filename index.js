@@ -4,7 +4,7 @@ var qs = require('querystring');
 
 var request = require('lib/request');
 var parsers = require('lib/parsers');
-var dateUtil = require('lib/dateUtil');
+var dateUtil = require('lib/date-util');
 
 var BASE = 'http://open-api.bahn.de/bin/rest.exe';
 
