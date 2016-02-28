@@ -5,7 +5,7 @@
   },
   "env": {
     "es6": false,
-    "browser": false,
+    "browser": true,
     "node": true,
     "mocha": true
   },
