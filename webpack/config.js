@@ -11,7 +11,7 @@ module.exports = {
   output: {
     library: 'Fahrplan',
     libraryTarget: 'umd',
-    path: pr(__dirname, 'dist/'),
+    path: pr(__dirname, '../dist/'),
     filename: 'fahrplan.js',
   },
 
