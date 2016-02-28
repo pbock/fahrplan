@@ -1,0 +1,5 @@
+[*]
+# I normally use tabs, but this project accidentally started with spaces, so spaces it is.
+indent_style = space
+indent_size = 2
+
