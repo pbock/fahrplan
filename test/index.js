@@ -89,20 +89,27 @@ describe('fahrplan', function () {
         .catch(done);
     });
 
-    it('returns the same results for station IDs and station names', function (done) {
+    it('accepts station IDs, station names, station objects, and promises resolving to station objects', function (done) {
       Promise.all([
         fahrplan.station.get('B')
           .then(function (station) { return fahrplan.departure.find(station.id) }),
         fahrplan.departure.find('B'),
+        fahrplan.station.get('B')
+          .then(function (station) { return fahrplan.departure.find(station) }),
+        fahrplan.departure.find(fahrplan.station.get('B'))
       ])
       .then(function (results) {
         var byName = results[0];
         var byId = results[1];
+        var byObject = results[2];
+        var byPromise = results[3];
         // Can't use deep.equal because itinerary.get aren't equal
         var keys = [ 'name', 'type', 'station', 'departure', 'destination', 'platform' ];
         byName.forEach(function (station, i) {
           keys.forEach(function (key) {
             expect(byName[i][key]).to.deep.equal(byId[i][key]);
+            expect(byObject[i][key]).to.deep.equal(byId[i][key]);
+            expect(byPromise[i][key]).to.deep.equal(byId[i][key]);
           });
         });
         done();
@@ -138,20 +145,27 @@ describe('fahrplan', function () {
         .catch(done);
     });
 
-    it('returns the same results for station IDs and station names', function (done) {
+    it('accepts station IDs, station names, station objects, and promises resolving to station objects', function (done) {
       Promise.all([
         fahrplan.station.get('B')
           .then(function (station) { return fahrplan.arrival.find(station.id) }),
         fahrplan.arrival.find('B'),
+        fahrplan.station.get('B')
+          .then(function (station) { return fahrplan.arrival.find(station) }),
+        fahrplan.arrival.find(fahrplan.station.get('B'))
       ])
       .then(function (results) {
         var byName = results[0];
         var byId = results[1];
+        var byObject = results[2];
+        var byPromise = results[3];
         // Can't use deep.equal because itinerary.get aren't equal
         var keys = [ 'name', 'type', 'station', 'arrival', 'origin', 'platform' ];
         byName.forEach(function (station, i) {
           keys.forEach(function (key) {
             expect(byName[i][key]).to.deep.equal(byId[i][key]);
+            expect(byObject[i][key]).to.deep.equal(byId[i][key]);
+            expect(byPromise[i][key]).to.deep.equal(byId[i][key]);
           });
         });
         done();

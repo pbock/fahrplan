@@ -113,15 +113,22 @@ fahrplan.station.get('München Hbf').then(doSomethingWithMunich);
 
 Looks up all trains leaving from the station `station` at the given `date` (defaults to now).
 
-`station` can be a Station ID (recommended) or anything that `station.get()` understands. If it's an ID, it will be passed straight through to the API, otherwise it will first go through `station.get()`, causing an additional HTTP request. For faster results and lower traffic, it's best to use an ID if you know it.
+`station` can be:
 
-Example:
+- a Station ID (recommended),
+- a `station` object from `station.find()` or `station.get()`,
+- a Promise that resolves to a station,
+- or anything that `station.get()` understands.
+
+IDs will be passed straight through to the API, Promises will be resolved. Station names will go through `station.get()`, causing an additional HTTP request. For faster results and lower traffic, it's best to use an ID if you know it.
 
 ```js
 // All trains leaving from Berlin Ostbahnhof right now
 fahrplan.departure.find('008010255').then(doSomethingWithTheResult);
 // Find the first train that left from Berlin Hbf in 2016
-fahrplan.departure.find('Berlin Hbf', new Date(2016, 0, 1)).then(departures => departures[0]);
+fahrplan.departure.find('Berlin Hbf', new Date(2016, 0, 1)).then(departures => departures[0])// You can also use a Promise as the first parameter.
+fahrplan.arrival.find(fahrplan.station.get('Münster')).then(doSomethingWithTheResult);
+;
 ```
 
 **Returns** a Promise that resolves with an array like this:
@@ -140,7 +147,7 @@ fahrplan.departure.find('Berlin Hbf', new Date(2016, 0, 1)).then(departures => d
 ]
 ```
 
-Because you'll often need to look up a station ID before you can fetch the departures board, you can also look it up right from the result of `station.find()` or `station.get()`. Station objects come with a `departure.find([ date ])` method that works just the same.
+Because you'll often look up a station before you can fetch the departures board, you can also fetch the departures right from the result of `station.find()` or `station.get()`. Station objects come with a `departure.find([ date ])` method that works just the same.
 
 Example:
 
@@ -154,7 +161,14 @@ fahrplan.station.get('Köln')
 
 Looks up all trains leaving from the station `stationId` at the given `date` (defaults to now).
 
-`station` can be a Station ID (recommended) or anything that `station.get()` understands. If it's an ID, it will be passed straight through to the API, otherwise it will first go through `station.get()`, causing an additional HTTP request. For faster results and lower traffic, it's best to use an ID if you know it.
+`station` can be:
+
+- a Station ID (recommended),
+- a `station` object from `station.find()` or `station.get()`,
+- a Promise that resolves to a station,
+- or anything that `station.get()` understands.
+
+IDs will be passed straight through to the API, Promises will be resolved. Station names will go through `station.get()`, causing an additional HTTP request. For faster results and lower traffic, it's best to use an ID if you know it.
 
 Example:
 
@@ -163,11 +177,13 @@ Example:
 fahrplan.arrival.find('Berlin Ostbahnhof').then(doSomethingWithTheResult);
 // Find the first train that arrived in Berlin Hbf in 2016
 fahrplan.arrival.find('008011160', new Date(2016, 0, 1)).then(arrivals => arrivals[0]);
+// You can also use a Promise as the first parameter.
+fahrplan.arrival.find(fahrplan.station.get('Duisburg')).then(doSomethingWithTheResult);
 ```
 
 **Returns** a Promise that resolves with an array just like the one in `departure.find()`, except that `destination` and `departure` are replaced with `origin` and `arrival`, respectively.
 
-Because you'll often need to look up a station ID before you can fetch the arrivals board, you can also look it up right from the result of `station.find()` or `station.get()`. Station objects come with a `arrival.find([ date ])` method that works just the same.
+Because you'll often look up a station before you can fetch the arrivals board, you can also fetch the arrivals right from the result of `station.find()` or `station.get()`. Station objects come with a `arrival.find([ date ])` method that works just the same.
 
 ### `itinerary.get(url)`
 

@@ -45,13 +45,30 @@ module.exports = function fahrplan(key) {
     // results for Berlin Südkreuz, not Berlin Hbf.
     // For predictable behaviour, we'll pass anything that doesn't look like an
     // ID through getStation() first.
+    // In addition, we also support passing station objects (any object with an
+    // `id` or `name` property and Promises that resolve to them
     var station;
-    if (RE_STATION_ID.test(query)) {
+    if (query.id && RE_STATION_ID.test(query.id)) {
+      // An object with an `id` property that looks like a station ID
+      station = query;
+    } else if (RE_STATION_ID.test(query)) {
+      // A string that looks like a station ID
       station = { id: query };
+    } else if (typeof query.then === 'function') {
+      // A Promise, let's hope it resolves to a station
+      station = query;
+    } else if (query.name) {
+      // An object with a `name` property,
+      // let's use that to look up a station id
+      station = getStation(query.name);
     } else {
-      station = getStation(query);
+      // Last resort, let's make sure it's a string and look it up
+      station = getStation('' + query);
     }
 
+    // Whatever we have now is either something that has an id property
+    // or will (hopefully) resolve to something that has an id property.
+    // Resolve it if it needs resolving, then look up a timetable for it.
     return Promise.resolve(station)
       .then(function (station) {
         return request(
