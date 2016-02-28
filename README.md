@@ -126,9 +126,9 @@ IDs will be passed straight through to the API, Promises will be resolved. Stati
 // All trains leaving from Berlin Ostbahnhof right now
 fahrplan.departure.find('008010255').then(doSomethingWithTheResult);
 // Find the first train that left from Berlin Hbf in 2016
-fahrplan.departure.find('Berlin Hbf', new Date(2016, 0, 1)).then(departures => departures[0])// You can also use a Promise as the first parameter.
-fahrplan.arrival.find(fahrplan.station.get('Münster')).then(doSomethingWithTheResult);
-;
+fahrplan.departure.find('Berlin Hbf', new Date(2016, 0, 1)).then(departures => departures[0]);
+// You can also use a Promise as the first parameter.
+fahrplan.departure.find(fahrplan.station.get('Münster')).then(doSomethingWithTheResult);
 ```
 
 **Returns** a Promise that resolves with an array like this:
