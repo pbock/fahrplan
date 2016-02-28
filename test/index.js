@@ -16,7 +16,7 @@ describe('Fahrplan', function () {
     expect(function () { Fahrplan('topsecret') }).not.to.throw();
   });
 
-  it('returns an object with "station.find", "departures.get" and "arrivals.get" methods', function () {
+  it('returns an object with "station.find", "departure.find" and "arrival.find" methods', function () {
     var fahrplan = new Fahrplan('topsecret');
     expect(fahrplan.station.find).to.be.a('function');
     expect(fahrplan.departure.find).to.be.a('function');
