@@ -1,7 +1,6 @@
 'use strict';
 
 var expect = require('chai').expect;
-var Promise = require('es6-promise').Promise;
 
 var request = require('../../lib/request');
 
@@ -12,7 +11,10 @@ describe('request', function () {
 
   it('returns a Promise', function () {
     var returnValue = request('http://example.com/');
-    expect(returnValue).to.be.an.instanceOf(Promise);
+    // No point testing for a specific prototype (because polyfill may not be
+    // necessary everywhere and is not included in the browser version)
+    expect(returnValue.then).to.be.a('function');
+    expect(returnValue.catch).to.be.a('function');
   });
 
   it('resolves with an object with a `data` property', function (done) {
