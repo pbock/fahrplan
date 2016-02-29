@@ -1,4 +1,4 @@
-# Fahrplan
+# Fahrplan.js
 
 A JavaScript client for Deutsche Bahn's [timetable API](http://data.deutschebahn.com/apis/fahrplan/).
 
@@ -20,13 +20,23 @@ fahrplan.arrival.find('Berlin Hbf', new Date(2016, 0, 1))
   .then(arrivals => console.log('The first train of the year was %s from %s', arrivals[0].name, arrivals[0].origin));
 ```
 
-It currently only works in node.js but will be coming to a browser near you as soon as Deutsche Bahn adds an `Access-Control-Allow-Origin` header.
+It runs in node.js and the browser (well, sort of).
 
 ## Installing
+
+### node.js
 
 ```sh
 npm install fahrplan
 ```
+
+### Browser
+
+You can use Fahrplan.js with a bundler like [Webpack](http://webpack.github.io) or [Browserify](http://browserify.org) (`npm install fahrplan`) or by downloading and including [fahrplan.js](https://raw.githubusercontent.com/pbock/fahrplan/master/dist/fahrplan.js) or [fahrplan.min.js](https://raw.githubusercontent.com/pbock/fahrplan/master/dist/fahrplan.min.js) directly.
+
+In the latter case, you will need a polyfill for Promises unless you can live [without support for Internet Explorer](http://caniuse.com/#feat=promises). [es6-promise](https://github.com/stefanpenner/es6-promise) is a good one.
+
+Fahrplan.js works in the browser, but you can't use it yet because DB's server doesn't send an `Access-Control-Allow-Origin` header. This will hopefully be sorted soon, in the meantime, you can test it in Chrome by starting it with the ominously named `--disable-web-security` flag.
 
 ## Usage
 
@@ -34,6 +44,8 @@ Create a new instance of the client with your API key:
 
 ```js
 const fahrplan = require('fahrplan')(/* Your API Key goes here */);
+// Or in the browser, if you're not using a bundler:
+var fahrplan = new Fahrplan(/* Your API Key goes here */);
 ```
 
 Just [send an email to dbopendata@deutschebahn.com](mailto:dbopendata@deutschebahn.com) to get an API key. There have been reports of the key being leaked, but we couldn't possibly comment.

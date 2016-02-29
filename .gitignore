@@ -1,2 +1,3 @@
 node_modules/
 test/config.js
+test/browser/test.js

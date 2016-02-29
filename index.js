@@ -1,7 +1,6 @@
 'use strict';
 
-var qs = require('querystring');
-
+var qs = require('./lib/querystring');
 var request = require('./lib/request');
 var parsers = require('./lib/parsers');
 var dateUtil = require('./lib/date-util');
@@ -10,7 +9,7 @@ var BASE = 'http://open-api.bahn.de/bin/rest.exe';
 
 var RE_STATION_ID = /^\d{9}$/;
 
-module.exports = function fahrplan(key) {
+function fahrplan(key) {
   if (!key) throw new Error('No API key provided');
 
   function findStation(query) {
@@ -107,3 +106,5 @@ module.exports = function fahrplan(key) {
   };
   return api;
 }
+
+module.exports = fahrplan;

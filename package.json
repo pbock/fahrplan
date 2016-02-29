@@ -4,7 +4,9 @@
   "description": "A client for Deutsche Bahn's open timetable API",
   "main": "index.js",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha test/index.js",
+    "build": "webpack --config webpack/config.js && webpack --config webpack/config.min.js",
+    "test:browser": "webpack --config webpack/test.js"
   },
   "repository": {
     "type": "git",
@@ -28,7 +30,9 @@
   "devDependencies": {
     "chai": "^3.5.0",
     "mocha": "^2.4.5",
-    "moment": "^2.11.2"
+    "mocha-loader": "^0.7.1",
+    "moment": "^2.11.2",
+    "webpack": "^1.12.14"
   },
   "dependencies": {
     "es6-promise": "^3.1.2"
