@@ -45,7 +45,7 @@ Create a new instance of the client with your API key:
 ```js
 const fahrplan = require('fahrplan')(/* Your API Key goes here */);
 // Or in the browser, if you're not using a bundler:
-var fahrplan = new Fahrplan(/* Your API Key goes here */);
+var fahrplan = Fahrplan(/* Your API Key goes here */);
 ```
 
 Just [send an email to dbopendata@deutschebahn.com](mailto:dbopendata@deutschebahn.com) to get an API key. There have been reports of the key being leaked, but we couldn't possibly comment.
