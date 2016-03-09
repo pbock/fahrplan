@@ -102,6 +102,7 @@ fahrplan.station.find('008010255').then(doSomethingWithTheResult);
 Starts a full-text search for the given name and resolves with only the first matched station, or `null` if no station was found.
 
 Behaves like `station.find()`, but only resolves with the first match or `null`.
+(Note that the search is annoyingly tolerant and will try to return a result even for the silliest of queries.)
 
 Example:
 ```js

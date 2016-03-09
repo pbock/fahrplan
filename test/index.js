@@ -66,7 +66,7 @@ describe('fahrplan', function () {
     });
 
     it('resolves with null if no station was found', function (done) {
-      fahrplan.station.get('TESTINGWHATHAPPENSIFQUERYISSTUPID')
+      fahrplan.station.get('')
         .then(function (result) {
           expect(result).to.be.null;
           done();
