@@ -258,6 +258,6 @@ There's no easy fix for this, partly because JavaScript's timezone handling is a
 
 The API currently only returns trains that run in/through Germany, but that's enough to cause issues: The EN 23 Москва́-Белору́сская—Strasbourg runs through Germany and is therefore included in the results. It leaves Moscow at 19:15 UTC – but the API doesn't tell you that, it tells you that it leaves at 22:15 and lets you guess the timezone.
 
-One *could* guess the timezone by abusing the `latitude`/`longitude` information, but that seems overkill for something that *should* be fixed by sending all the necessary data.
+One *could* guess the timezone by [abusing the station codes](https://github.com/pbock/fahrplan/commit/e2d0803f91d6db9335e7c2e06bd09936c1756caa#commitcomment-16570880) or the `latitude`/`longitude` information, but that seems overkill for something that *should* be fixed by sending all the necessary data.
 
 Timezones really aren't a problem that hasn't been solved yet, and as soon as Deutsche Bahn includes timezones in its API results, this client will support them too.
