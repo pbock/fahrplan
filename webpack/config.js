@@ -2,10 +2,6 @@
 var webpack = require('webpack');
 var pr = require('path').resolve;
 
-var definePlugin = new webpack.DefinePlugin({
-  BROWSER: true,
-});
-
 module.exports = {
   entry: '.',
   output: {
@@ -14,6 +10,12 @@ module.exports = {
     path: pr(__dirname, '../dist/'),
     filename: 'fahrplan.js',
   },
-
-  plugins: [definePlugin],
+  node: {
+    http: false,
+    https: false,
+  },
+  externals: {
+    'es6-promise': true,
+  },
+  plugins: [],
 };
