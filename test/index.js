@@ -35,7 +35,7 @@ describe('fahrplan', function () {
           expect(result.stations).to.be.an('array');
           expect(result.places).to.be.an('array');
 
-          expect(result.stations[0].name).to.equal('Berlin Hbf');
+          expect(result.stations[0].name).to.equal('BERLIN');
           expect(result.stations[0].departure.find).to.be.a('function');
           expect(result.stations[0].arrival.find).to.be.a('function');
           done();

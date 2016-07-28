@@ -5,7 +5,7 @@ var request = require('./lib/request');
 var parsers = require('./lib/parsers');
 var dateUtil = require('./lib/date-util');
 
-var BASE = 'http://open-api.bahn.de/bin/rest.exe';
+var BASE = 'https://open-api.bahn.de/bin/rest.exe';
 
 var RE_STATION_ID = /^\d{9}$/;
 
